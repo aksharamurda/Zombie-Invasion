@@ -6,9 +6,11 @@ using UnityEngine;
 public class Weapon : ScriptableObject {
 
     public string id;
+    public int price = 1000;
     public IKPosition m_h_ik;
     public GameObject modelPrefab;
 
+    public int bulletAmount = 1;
     public float fireRate = 0.1f;
     public int magazineAmmo = 30;
     public int maxAmmo = 160;

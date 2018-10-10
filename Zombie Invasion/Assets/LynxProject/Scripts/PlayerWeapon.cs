@@ -39,7 +39,7 @@ public class RuntimeWeapon
         weaponHook.Shoot();
         curAmmo--;
 
-        Debug.Log("Shoot Weapon Working.");
+        //Debug.Log("Shoot Weapon Working.");
     }
 }
 

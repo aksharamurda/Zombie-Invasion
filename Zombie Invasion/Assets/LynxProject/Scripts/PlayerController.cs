@@ -145,14 +145,49 @@ public class PlayerController : MonoBehaviour {
         {
             if (t - c.lastFired > c.weapon.fireRate)
             {
+                c.lastFired = t;
                 retVal = true;
                 c.ShootWeapon();
                 animatorHook.RecoilAnim();
+                HandleShooting(c);
             }
         }
 
         return retVal;
     }
+
+    void HandleShooting(RuntimeWeapon c)
+    {
+
+        Vector3 origin = animatorHook.aimPivot.position;
+        origin += animatorHook.aimPivot.forward * 0.5f;
+
+        for (int i = 0; i < c.weapon.bulletAmount; i++)
+        {
+            Vector3 targetPosition = inputVariables.aimPosition;
+            Vector3 targetDirection = targetPosition - origin;
+
+            bool isHit = false;
+
+            RaycastHit hit =  Ballistics.RaycastShoot(origin, targetDirection, ref isHit, ignoreLayer);
+
+            if (isHit)
+            {
+                HandleBulletHit(hit, c);
+            }
+
+        }
+    }
+
+    void HandleBulletHit(RaycastHit hit, RuntimeWeapon rw)
+    {
+        //if Hit enemy ?
+
+        //else ?
+
+        Debug.Log("Send Message to " + hit.transform.name + ", that he was shot.");
+    }
+
 
     public bool Reload()
     {

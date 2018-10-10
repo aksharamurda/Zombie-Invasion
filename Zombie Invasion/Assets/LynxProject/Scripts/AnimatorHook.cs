@@ -15,7 +15,7 @@ public class AnimatorHook : MonoBehaviour {
     Transform rh_target;
     public Transform lh_target;
     Transform shoulder;
-    Transform aimPivot;
+    public Transform aimPivot;
 
     Vector3 lookDir;
 
