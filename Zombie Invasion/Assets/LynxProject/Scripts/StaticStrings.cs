@@ -12,4 +12,6 @@ public static class StaticStrings{
     public static string animParamVertical = "vertical";
     public static string animParamHorizontal = "horizontal";
     public static string animParamAiming = "aiming";
+
+    public static string animParamWeaponType = "weaponIdle";
 }

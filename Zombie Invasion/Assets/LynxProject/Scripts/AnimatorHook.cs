@@ -42,11 +42,11 @@ public class AnimatorHook : MonoBehaviour {
 
     }
 
-    /*
+    
     public void EquipWeapon(RuntimeWeapon rw)
     {
-        Weapon w = rw.w_actual;
-        lh_target = rw.w_hook.leftHandIK;
+        Weapon w = rw.weapon;
+        lh_target = rw.weaponHook.leftHandIK;
 
         rh_target.localPosition = w.m_h_ik.pos;
         rh_target.localEulerAngles = w.m_h_ik.rot;
@@ -54,9 +54,9 @@ public class AnimatorHook : MonoBehaviour {
         basePosition = w.m_h_ik.pos;
         baseRotation = w.m_h_ik.rot;
 
-        onIdleDiableOh = rw.w_actual.onIdleDiableOh;
+        onIdleDiableOh = rw.weapon.onIdleDiableOh;
     }
-    */
+    
 
     private void OnAnimatorMove()
     {
@@ -194,10 +194,10 @@ public class AnimatorHook : MonoBehaviour {
                 recoilIsInit = false;
             }
 
-            /*
-            offsetPosition = Vector3.forward * playerController.weaponManager.GetCurrent().w_actual.recoilZ.Evaluate(recoilT);
-            offsetRotation = Vector3.right * 90 * -playerController.weaponManager.GetCurrent().w_actual.recoilY.Evaluate(recoilT);
-            */
+            
+            offsetPosition = Vector3.forward * playerController.playerWeapon.GetCurrent().weapon.recoilZ.Evaluate(recoilT);
+            offsetRotation = Vector3.right * 90 * -playerController.playerWeapon.GetCurrent().weapon.recoilY.Evaluate(recoilT);
+            
 
             rh_target.localPosition = basePosition + offsetPosition;
             rh_target.localEulerAngles = baseRotation + offsetRotation;

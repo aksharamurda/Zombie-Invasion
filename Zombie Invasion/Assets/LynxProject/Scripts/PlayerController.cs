@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    public ResourcesManager resourcesManager;
+    [HideInInspector]
     public InputVariables inputVariables;
 
     [System.Serializable]
@@ -28,6 +30,11 @@ public class PlayerController : MonoBehaviour {
         public bool isReloading;
     }
 
+    public PlayerWeapon playerWeapon;
+
+    [HideInInspector]
+    public RuntimeReferences runtimeRef;
+
     public Animator animator;
     public GameObject activeModel;
     [HideInInspector]
@@ -49,8 +56,13 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public float delta = 0;
 
+    bool switchingWeapon;
+    float interactTime;
+
     public void InitPlayerController()
     {
+        resourcesManager.InitResourcesManager();
+
         mTransform = this.transform;
         SetupAnimator();
 
@@ -67,6 +79,115 @@ public class PlayerController : MonoBehaviour {
 
         animatorHook = activeModel.AddComponent<AnimatorHook>();
         animatorHook.InitAnimatorHook(this);
+
+        InitWeapon();
+    }
+
+    void InitWeapon()
+    {
+        CreateRuntimeWeapon(playerWeapon.mainWeaponID, ref playerWeapon.main_Weapon);
+        CreateRuntimeWeapon(playerWeapon.secondWeaponID, ref playerWeapon.second_Weapon);
+        EquipRuntimeWeapon(playerWeapon.main_Weapon);
+        playerWeapon.isMainWeapon = true;
+    }
+
+    public void CreateRuntimeWeapon(string id, ref RuntimeWeapon r_w_m)
+    {
+        Weapon w = resourcesManager.GetWeapon(id);
+        RuntimeWeapon rw = runtimeRef.WeaponToRuntimeWeapon(w);
+
+        GameObject go = Instantiate(w.modelPrefab);
+        rw.m_instance = go;
+        rw.weapon = w;
+        rw.weaponHook = go.GetComponent<WeaponHook>();
+        go.SetActive(false);
+
+        Transform p = animator.GetBoneTransform(HumanBodyBones.RightHand);
+        go.transform.SetParent(p);
+        go.transform.localPosition = Vector3.zero;
+        go.transform.localEulerAngles = Vector3.zero;
+        go.transform.localScale = Vector3.one;
+
+        r_w_m = rw;
+    }
+
+    public void EquipRuntimeWeapon(RuntimeWeapon rw)
+    {
+        if (playerWeapon.GetCurrent() != null)
+        {
+            animator.CrossFade("Switch", 0.2f);
+            controllerStates.isAiming = false;
+            switchingWeapon = true;
+            controllerStates.isInteracting = true;
+            UnEquipWeapon(playerWeapon.GetCurrent());
+        }
+
+        rw.m_instance.SetActive(true);
+        animatorHook.EquipWeapon(rw);
+
+        animator.SetFloat(StaticStrings.animParamWeaponType, rw.weapon.WeaponType);
+        playerWeapon.SetCurrent(rw);
+
+    }
+
+    public void UnEquipWeapon(RuntimeWeapon rw)
+    {
+        rw.m_instance.SetActive(false);
+    }
+
+    public bool ShootWeapon(float t)
+    {
+        bool retVal = false;
+
+        RuntimeWeapon c = playerWeapon.GetCurrent();
+
+        if (c.curAmmo > 0)
+        {
+            if (t - c.lastFired > c.weapon.fireRate)
+            {
+                retVal = true;
+                c.ShootWeapon();
+                animatorHook.RecoilAnim();
+            }
+        }
+
+        return retVal;
+    }
+
+    public bool Reload()
+    {
+        bool retVal = false;
+        RuntimeWeapon c = playerWeapon.GetCurrent();
+
+        if (c.curAmmo < c.weapon.magazineAmmo)
+        {
+            if (c.weapon.magazineAmmo <= c.curCarryingAmmo)
+            {
+                c.curAmmo = c.weapon.magazineAmmo;
+                c.curCarryingAmmo -= c.curAmmo;
+            }
+            else
+            {
+                c.curAmmo = c.curCarryingAmmo;
+                c.curCarryingAmmo = 0;
+            }
+
+            retVal = true;
+            animator.CrossFade("Rifle Reload", 0.2f);
+            controllerStates.isAiming = false;
+            controllerStates.isInteracting = true;
+        }
+
+        return retVal;
+    }
+
+    public void SwitchWeapon()
+    {
+        if (controllerStates.isInteracting)
+            return;
+
+        playerWeapon.isMainWeapon = !playerWeapon.isMainWeapon;
+        EquipRuntimeWeapon((playerWeapon.isMainWeapon) ? playerWeapon.main_Weapon : playerWeapon.second_Weapon);
     }
 
     void SetupAnimator()
@@ -114,6 +235,34 @@ public class PlayerController : MonoBehaviour {
         controllerStates.onGround = OnGround();
         HandleAnimationAll();
         animatorHook.Tick();
+
+        if (controllerStates.isInteracting)
+        {
+            interactTime += delta;
+            if (switchingWeapon)
+            {
+                if (interactTime > 1f)
+                {
+                    switchingWeapon = false;
+                    controllerStates.isInteracting = false;
+                    controllerStates.isAiming = true;
+                    interactTime = 0;
+                }
+            }
+            else
+            {
+                if (interactTime > 2.9f)
+                {
+                    controllerStates.isAiming = true;
+                }
+                if (interactTime > 3)
+                {
+                    controllerStates.isInteracting = false;
+                    interactTime = 0;
+                }
+            }
+
+        }
     }
 
     void HandleAnimationAll()

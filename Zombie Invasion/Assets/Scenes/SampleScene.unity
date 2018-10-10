@@ -185,7 +185,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0, g: 0.028816486, b: 0.1981132, a: 1}
+  m_Color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea1052acf0494d4e81ccef1a660db07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourcesManager: {fileID: 11400000, guid: 2d61d158ceeb3a8498d4fc96f20c4306, type: 2}
   inputVariables:
     horizontal: 0
     vertical: 0
@@ -268,6 +269,26 @@ MonoBehaviour:
     isAiming: 0
     isInteracting: 0
     isReloading: 0
+  playerWeapon:
+    isMainWeapon: 0
+    mainWeaponID: M4
+    secondWeaponID: M4
+    main_Weapon:
+      curAmmo: 0
+      curCarryingAmmo: 0
+      lastFired: 0
+      m_instance: {fileID: 0}
+      weaponHook: {fileID: 0}
+      weapon: {fileID: 0}
+    second_Weapon:
+      curAmmo: 0
+      curCarryingAmmo: 0
+      lastFired: 0
+      m_instance: {fileID: 0}
+      weaponHook: {fileID: 0}
+      weapon: {fileID: 0}
+  runtimeRef:
+    runtimeWeapons: []
   animator: {fileID: 1813593111}
   activeModel: {fileID: 1813593109}
   animatorHook: {fileID: 0}
