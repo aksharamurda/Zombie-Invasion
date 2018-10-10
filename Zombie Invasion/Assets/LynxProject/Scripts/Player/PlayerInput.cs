@@ -104,6 +104,7 @@ public class PlayerInput : MonoBehaviour {
             bool shootActual = playerController.ShootWeapon(Time.realtimeSinceStartup);
             if (shootActual)
             {
+                (GameObject.FindObjectOfType(typeof(Crosshair)) as Crosshair).targetSpread = 120;
                 //Update UI (Ammo, Mag, etc)
             }
         }

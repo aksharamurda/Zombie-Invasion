@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02a2d04a5e25b84d9d8dc5be466012e, type: 3}
   m_Name: IK_M4
   m_EditorClassIdentifier: 
-  pos: {x: 0.1464159, y: -0.06759755, z: 0.1865444}
+  pos: {x: 0.143, y: -0.126, z: 0.188}
   rot: {x: -1.498, y: 0.623, z: -93.57301}
