@@ -22,8 +22,8 @@ public class PlayerInput : MonoBehaviour {
     public PlayerController playerController;
     public PlayerCamera playerCamera;
 
-    public bool alwaysAim;
-
+    public bool alwaysAim = true;
+    public bool autoAim;
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -121,7 +121,8 @@ public class PlayerInput : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, playerController.ignoreLayer))
         {
-            playerController.inputVariables.aimPosition = hit.point;
+            if(autoAim)
+                playerController.inputVariables.aimPosition = hit.point;
         }
     }
 }
