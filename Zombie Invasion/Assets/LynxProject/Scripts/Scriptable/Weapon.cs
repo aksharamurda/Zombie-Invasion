@@ -16,6 +16,7 @@ public class Weapon : ScriptableObject {
     public int maxAmmo = 160;
     public bool onIdleDiableOh;
     public int WeaponType;
+    public int damageWeapon = 10;
 
     public AnimationCurve recoilY;
     public AnimationCurve recoilZ;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [HideInInspector]
     public ResourcesManager resourcesManager;
     [HideInInspector]
     public InputVariables inputVariables;
@@ -61,6 +62,9 @@ public class PlayerController : MonoBehaviour {
 
     public void InitPlayerController()
     {
+
+        resourcesManager = Resources.Load("Resources") as ResourcesManager;
+
         resourcesManager.InitResourcesManager();
 
         mTransform = this.transform;
@@ -182,10 +186,10 @@ public class PlayerController : MonoBehaviour {
     void HandleBulletHit(RaycastHit hit, RuntimeWeapon rw)
     {
         //if Hit enemy ?
-
+        hit.transform.SendMessage("OnHit", rw.weapon.damageWeapon, SendMessageOptions.DontRequireReceiver);
         //else ?
 
-        Debug.Log("Send Message to " + hit.transform.name + ", that he was shot.");
+        //Debug.Log("Send Message to " + hit.transform.name + ", that he was shot.");
     }
 
 

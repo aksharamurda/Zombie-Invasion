@@ -22,12 +22,16 @@ public class PlayerCamera : MonoBehaviour {
     float lookAngle;
     float tiltAngle;
 
+    [HideInInspector]
     public CameraValues values;
 
     PlayerController playerController;
 
     public void InitPlayerCamera(PlayerInput inp)
     {
+
+        values = Resources.Load("Camera Values") as CameraValues;
+
         mTranform = this.transform;
         playerController = inp.playerController;
         target = playerController.mTransform;
