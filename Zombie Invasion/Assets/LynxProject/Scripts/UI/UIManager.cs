@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour {
 
     public static UIManager instance;
 
+    public bool useMobileConsole;
+
     public List<UIElement> uiElements = new List<UIElement>();
 
     void Awake()

@@ -8,6 +8,11 @@ public class UIElement : MonoBehaviour {
     void Awake()
     {
 
+    }
+
+    void Start()
+    {
+
         if (UIManager.instance != null)
             UIManager.instance.uiElements.Add(this);
     }

@@ -52,6 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4467447982019332}
   - component: {fileID: 114317345588839452}
+  - component: {fileID: 114229377382948754}
   m_Layer: 0
   m_Name: M4_Prefab
   m_TagString: Untagged
@@ -142,6 +143,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1782238901529682}
   m_Mesh: {fileID: 4300000, guid: 2552ff5b2afc0324bb8c4ab78678a1d8, type: 3}
+--- !u!114 &114229377382948754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802894268119390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dcaf30f81e766d4a833f97a8d92b805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponEject:
+  - {fileID: 8300000, guid: 0694dd123b4f5ec459fca96fec54f9e8, type: 3}
+  weaponRechamber:
+  - {fileID: 8300000, guid: 9722ab98c96dcbb4abfb8166a2be56c8, type: 3}
+  weaponFire:
+  - {fileID: 8300000, guid: bc26cbd5664cd1a48b28b4c579bbfe87, type: 3}
+  - {fileID: 8300000, guid: e290c8ac7e0884d4db6863a389557460, type: 3}
+  - {fileID: 8300000, guid: e01ac229ced506748b99edb25e8f91c1, type: 3}
 --- !u!114 &114317345588839452
 MonoBehaviour:
   m_ObjectHideFlags: 1

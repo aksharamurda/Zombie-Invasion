@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerCamera : MonoBehaviour {
 
@@ -83,8 +84,23 @@ public class PlayerCamera : MonoBehaviour {
 
     void HandleRotation()
     {
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
+
+        if (UIManager.instance.useMobileConsole)
+        {
+            if (IsPointerOverGameObject())
+                return;
+
+            if (Input.touchCount > 0)
+            {
+                mouseX = Input.touches[0].deltaPosition.x;
+                mouseY = Input.touches[0].deltaPosition.y;
+            }
+        }
+        else
+        {
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+        }
 
         if (values.turnSmooth > 0)
         {
@@ -104,5 +120,21 @@ public class PlayerCamera : MonoBehaviour {
         tiltAngle -= smoothY * values.x_rotate_speed;
         tiltAngle = Mathf.Clamp(tiltAngle, values.minAngle, values.maxAngle);
         pivot.localRotation = Quaternion.Euler(tiltAngle, 0, 0);
+    }
+
+    public static bool IsPointerOverGameObject()
+    {
+        //check mouse
+        if (EventSystem.current.IsPointerOverGameObject())
+            return true;
+
+        //check touch
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        {
+            if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
+                return true;
+        }
+
+        return false;
     }
 }

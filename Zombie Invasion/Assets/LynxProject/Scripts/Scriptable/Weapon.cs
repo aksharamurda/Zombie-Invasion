@@ -6,6 +6,7 @@ using UnityEngine;
 public class Weapon : ScriptableObject {
 
     public string id;
+    public Sprite icon;
     public int price = 1000;
     public IKPosition m_h_ik;
     public GameObject modelPrefab;

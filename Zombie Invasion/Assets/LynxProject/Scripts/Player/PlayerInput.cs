@@ -7,12 +7,12 @@ public class PlayerInput : MonoBehaviour {
     float horizontal;
     float vertical;
 
-    bool runInput;
-    bool shootInput;
-    bool crouchInput;
-    bool reloadInput;
-    bool switchInput;
-    bool pivotInput;
+    [HideInInspector]
+    public bool shootInput;
+    [HideInInspector]
+    public bool reloadInput;
+    [HideInInspector]
+    public bool switchInput;
 
     bool isInit;
 
@@ -73,10 +73,13 @@ public class PlayerInput : MonoBehaviour {
 
         delta = Time.deltaTime;
 
-        GetInput_Update();
-        AimPosition();
-        InGame_UpdateStates_Update();
+        if (!UIManager.instance.useMobileConsole)
+        {
+            GetInput_Update();  
+            InGame_UpdateStates_Update();
+        }
 
+        AimPosition();
         playerController.Tick(delta);
     }
 
@@ -87,6 +90,35 @@ public class PlayerInput : MonoBehaviour {
         switchInput = Input.GetButtonDown(StaticStrings.inputSwitch);
     }
 
+    public void OnMobileFireWeapon(bool isPressed)
+    {
+        if (isPressed && !playerController.controllerStates.isInteracting)
+        {
+            playerController.controllerStates.isAiming = true;
+            bool shootActual = playerController.ShootWeapon(Time.realtimeSinceStartup);
+            if (shootActual)
+            {
+                Fire();
+            }
+        }
+    }
+
+    public void OnMobileSwitchWeapon()
+    {
+        if (!playerController.controllerStates.isInteracting)
+            playerController.SwitchWeapon();
+    }
+
+    public void OnMobileReloadWeapon()
+    {
+        bool isReloading = playerController.Reload();
+        if (isReloading)
+        {
+            shootInput = false;
+            playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnReloadStart", 0, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
     void InGame_UpdateStates_Update()
     {
         if (reloadInput)
@@ -95,6 +127,7 @@ public class PlayerInput : MonoBehaviour {
             if (isReloading)
             {
                 shootInput = false;
+                playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnReloadStart", 0, SendMessageOptions.DontRequireReceiver);
             }
         }
 
@@ -104,7 +137,7 @@ public class PlayerInput : MonoBehaviour {
             bool shootActual = playerController.ShootWeapon(Time.realtimeSinceStartup);
             if (shootActual)
             {
-                (GameObject.FindObjectOfType(typeof(Crosshair)) as Crosshair).targetSpread = 120;
+                Fire();
                 //Update UI (Ammo, Mag, etc)
             }
         }
@@ -114,6 +147,12 @@ public class PlayerInput : MonoBehaviour {
 
     }
 
+
+    void Fire()
+    {
+        (GameObject.FindObjectOfType(typeof(UICrosshair)) as UICrosshair).targetSpread = 120;
+        playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnFire", 0, SendMessageOptions.DontRequireReceiver);
+    }
     void AimPosition()
     {
         Ray ray = new Ray(playerCamera.camTrans.position, playerCamera.camTrans.forward);

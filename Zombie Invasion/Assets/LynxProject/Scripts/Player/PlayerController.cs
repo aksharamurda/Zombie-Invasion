@@ -290,11 +290,11 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
-                if (interactTime > 2.9f)
+                if (interactTime > 2.5f)
                 {
                     controllerStates.isAiming = true;
                 }
-                if (interactTime > 3)
+                if (interactTime > 2.6f)
                 {
                     controllerStates.isInteracting = false;
                     interactTime = 0;

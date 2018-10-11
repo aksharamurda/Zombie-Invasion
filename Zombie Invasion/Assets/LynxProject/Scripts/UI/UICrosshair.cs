@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Crosshair : UIElement {
+public class UICrosshair : UIElement {
 
     public float defaultSpread = 30;
     public float targetSpread = 30;

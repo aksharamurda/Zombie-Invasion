@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 94f99913a2d931c4a9ff8e27ac49d841
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Sansation
+  fontNames:
+  - Sansation
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 44b5a753644c7d84aa387a87ae0cdd68, type: 3}
+  - {fileID: 12800000, guid: 62d13977a883040488bce746ef1d4f27, type: 3}
+  - {fileID: 12800000, guid: 2cd53b197a055034ca898559eff6bac3, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
