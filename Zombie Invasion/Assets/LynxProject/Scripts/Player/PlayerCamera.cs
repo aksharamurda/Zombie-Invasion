@@ -87,14 +87,37 @@ public class PlayerCamera : MonoBehaviour {
 
         if (UIManager.instance.useMobileConsole)
         {
-            if (IsPointerOverGameObject())
-                return;
+            //if (IsPointerOverGameObject())
+            //    return;
 
             if (Input.touchCount > 0)
             {
-                mouseX = Input.touches[0].deltaPosition.x;
-                mouseY = Input.touches[0].deltaPosition.y;
+                for (int i = 0; i < Input.touchCount; ++i)
+                {
+                    //Debug.Log(Input.GetTouch(i).position.x + " : " + ((Screen.width / 2 ) + Screen.width / 4));
+                    if (Input.GetTouch(i).position.x < ((Screen.width / 2) + Screen.width / 4))
+                    {
+                        if (Input.GetTouch(i).phase == TouchPhase.Moved)
+                        {
+                            Vector2 TouchDirection = Input.GetTouch(i).deltaPosition;
+
+                            mouseX = TouchDirection.x;
+                            mouseY = TouchDirection.y;
+                        }
+                        else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                        {
+                            mouseX = 0;
+                            mouseY = 0;
+                        }
+                    }
+                    else
+                    {
+                        mouseX = 0;
+                        mouseY = 0;
+                    }
+                }
             }
+            
         }
         else
         {
@@ -128,11 +151,15 @@ public class PlayerCamera : MonoBehaviour {
         if (EventSystem.current.IsPointerOverGameObject())
             return true;
 
-        //check touch
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        for (int i = 0; i < Input.touchCount; ++i)
         {
-            if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
-                return true;
+            //check touch
+            if (Input.touchCount > 0 && Input.touches[i].phase == TouchPhase.Began)
+            {
+                if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
+                    return true;
+            }
+
         }
 
         return false;
