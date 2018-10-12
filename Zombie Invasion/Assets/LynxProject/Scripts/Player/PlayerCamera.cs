@@ -28,6 +28,11 @@ public class PlayerCamera : MonoBehaviour {
 
     PlayerController playerController;
 
+    float shake_decay;
+    float shake_intensity;
+    Vector3 originPosition;
+    Quaternion originRotation;
+
     public void InitPlayerCamera(PlayerInput inp)
     {
 
@@ -53,6 +58,30 @@ public class PlayerCamera : MonoBehaviour {
 
         Vector3 targetPosition = Vector3.Lerp(mTranform.position, target.position, delta * speed);
         mTranform.position = targetPosition;
+    }
+
+    public void Tick(float d)
+    {
+        delta = d;
+
+        if (shake_intensity > 0)
+        {
+            transform.position = originPosition + Random.insideUnitSphere * shake_intensity;
+            transform.rotation = new Quaternion(
+                            originRotation.x + Random.Range(-shake_intensity, shake_intensity) * .1f,
+                            originRotation.y + Random.Range(-shake_intensity, shake_intensity) * .1f,
+                            originRotation.z + Random.Range(-shake_intensity, shake_intensity) * .1f,
+                            originRotation.w + Random.Range(-shake_intensity, shake_intensity) * .1f);
+            shake_intensity -= shake_decay;
+        }
+    }
+
+    public void Shake()
+    {
+        originPosition = transform.position;
+        originRotation = transform.rotation;
+        shake_intensity = .01f;
+        shake_decay = 0.002f;
     }
 
     void HandlePositions()
@@ -87,14 +116,11 @@ public class PlayerCamera : MonoBehaviour {
 
         if (UIManager.instance.useMobileConsole)
         {
-            //if (IsPointerOverGameObject())
-            //    return;
 
             if (Input.touchCount > 0)
             {
                 for (int i = 0; i < Input.touchCount; ++i)
                 {
-                    //Debug.Log(Input.GetTouch(i).position.x + " : " + ((Screen.width / 2 ) + Screen.width / 4));
                     if (Input.GetTouch(i).position.x < ((Screen.width / 2) + Screen.width / 4))
                     {
                         if (Input.GetTouch(i).phase == TouchPhase.Moved)

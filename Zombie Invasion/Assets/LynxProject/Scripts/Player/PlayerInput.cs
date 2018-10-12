@@ -81,6 +81,7 @@ public class PlayerInput : MonoBehaviour {
 
         AimPosition();
         playerController.Tick(delta);
+        playerCamera.Tick(delta);
     }
 
     void GetInput_Update()
@@ -150,6 +151,7 @@ public class PlayerInput : MonoBehaviour {
 
     void Fire()
     {
+        playerCamera.Shake();
         (GameObject.FindObjectOfType(typeof(UICrosshair)) as UICrosshair).targetSpread = 120;
         playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnFire", 0, SendMessageOptions.DontRequireReceiver);
     }

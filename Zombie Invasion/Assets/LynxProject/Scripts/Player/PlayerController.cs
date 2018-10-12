@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
         public bool isReloading;
     }
 
+    public float reloadTime = 2.6f;
     public PlayerWeapon playerWeapon;
 
     [HideInInspector]
@@ -290,11 +291,13 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
-                if (interactTime > 2.5f)
+
+                (GameObject.FindObjectOfType(typeof(UICrosshair)) as UICrosshair).EnableReloadUI(interactTime, reloadTime);
+                if (interactTime > reloadTime - 0.1f)
                 {
                     controllerStates.isAiming = true;
                 }
-                if (interactTime > 2.6f)
+                if (interactTime > reloadTime)
                 {
                     controllerStates.isInteracting = false;
                     interactTime = 0;
