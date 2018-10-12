@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f45a93aabc41db499ba3f2f2a122bb7, type: 3}
   m_Name: Camera Values
   m_EditorClassIdentifier: 
-  turnSmooth: 0.1
+  turnSmooth: 0
   moveSpeed: 9
   aimSpeed: 15
-  y_rotate_speed: 1.5
-  x_rotate_speed: 1.5
+  y_rotate_speed: 2
+  x_rotate_speed: 2
   minAngle: -35
   maxAngle: 35
   normalX: 0.4
