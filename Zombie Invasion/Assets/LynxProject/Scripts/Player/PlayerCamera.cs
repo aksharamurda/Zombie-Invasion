@@ -8,7 +8,10 @@ public class PlayerCamera : MonoBehaviour {
     public Transform camTrans;
     public Transform target;
     public Transform pivot;
+    [HideInInspector]
     public Transform mTranform;
+    [HideInInspector]
+    public Transform rayCamera;
     public bool leftPivot;
     float delta;
 
@@ -40,7 +43,10 @@ public class PlayerCamera : MonoBehaviour {
 
         mTranform = this.transform;
         playerController = inp.playerController;
+        playerController.playerCamera = this;
         target = playerController.mTransform;
+        rayCamera = camTrans.GetChild(0);
+        
     }
 
     public void FixedTick(float d)

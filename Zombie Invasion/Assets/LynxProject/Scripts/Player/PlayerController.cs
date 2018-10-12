@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public Transform mTransform;
 
+    PlayerCamera m_playerCamera;
+    public PlayerCamera playerCamera { get { return m_playerCamera; } set { m_playerCamera = value; } }
+
     [HideInInspector]
     public float delta = 0;
 
@@ -164,8 +167,9 @@ public class PlayerController : MonoBehaviour {
     void HandleShooting(RuntimeWeapon c)
     {
 
-        Vector3 origin = animatorHook.aimPivot.position;
-        origin += animatorHook.aimPivot.forward * 0.5f;
+        //Vector3 origin = animatorHook.aimPivot.position;
+        Vector3 origin = playerCamera.rayCamera.position;
+        origin += playerCamera.rayCamera.forward * 0.5f;
 
         for (int i = 0; i < c.weapon.bulletAmount; i++)
         {
