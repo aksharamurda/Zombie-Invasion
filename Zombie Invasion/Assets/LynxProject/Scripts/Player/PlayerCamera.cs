@@ -116,34 +116,9 @@ public class PlayerCamera : MonoBehaviour {
 
         if (UIManager.instance.useMobileConsole)
         {
-
-            if (Input.touchCount > 0)
-            {
-                for (int i = 0; i < Input.touchCount; ++i)
-                {
-                    if (Input.GetTouch(i).position.x < ((Screen.width / 2) + Screen.width / 4))
-                    {
-                        if (Input.GetTouch(i).phase == TouchPhase.Moved)
-                        {
-                            Vector2 TouchDirection = Input.GetTouch(i).deltaPosition;
-
-                            mouseX = TouchDirection.x;
-                            mouseY = TouchDirection.y;
-                        }
-                        else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                        {
-                            mouseX = 0;
-                            mouseY = 0;
-                        }
-                    }
-                    else
-                    {
-                        mouseX = 0;
-                        mouseY = 0;
-                    }
-                }
-            }
-            
+            JoystickController mobileJoystick = GameObject.FindObjectOfType(typeof(JoystickController)) as JoystickController;
+            mouseX = mobileJoystick.Horizontal;
+            mouseY = mobileJoystick.Vertical;
         }
         else
         {

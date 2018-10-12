@@ -14,8 +14,8 @@ MonoBehaviour:
   turnSmooth: 0.1
   moveSpeed: 9
   aimSpeed: 15
-  y_rotate_speed: 0.25
-  x_rotate_speed: 0.25
+  y_rotate_speed: 1.5
+  x_rotate_speed: 1.5
   minAngle: -35
   maxAngle: 35
   normalX: 0.4
