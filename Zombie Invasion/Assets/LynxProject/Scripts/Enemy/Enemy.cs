@@ -18,15 +18,10 @@ public class Enemy : MonoBehaviour {
     private NavMeshAgent navAgent;
     private Transform player;
 
-    //public List<string> walkAnimations = new List<string>();
-    //public List<string> attackAnimations = new List<string>();
-    //public List<string> hitAnimations = new List<string>();
-    //public List<string> deathAnimations = new List<string>();
-
     public bool isDead;
+    public float attackRate = 1;
+    private float nextAttackTime;
 
-    private string currentAttack;
-    private string currentWalk;
     void Awake()
     {
         health = GetComponent<Health>();
@@ -37,10 +32,6 @@ public class Enemy : MonoBehaviour {
 
         navAgent.stoppingDistance = stopDistance;
         navAgent.SetDestination(player.position);
-
-        //currentAttack = attackAnimations[Random.Range(0, attackAnimations.Count)];
-        //currentWalk = walkAnimations[Random.Range(0, walkAnimations.Count)];
-        //animator.Play(currentWalk);
 
     }
 
@@ -54,7 +45,14 @@ public class Enemy : MonoBehaviour {
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
             navAgent.isStopped = true;
-            animator.SetTrigger("OnAttack");
+
+            if(Time.time > nextAttackTime)
+            {
+                nextAttackTime = Time.time + attackRate;
+                animator.SetTrigger("OnAttack");
+                
+            }
+
         }
     }
 
