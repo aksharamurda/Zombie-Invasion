@@ -23,7 +23,7 @@ MonoBehaviour:
   maxAmmo: 160
   onIdleDiableOh: 0
   WeaponType: 0
-  damageWeapon: 10
+  damageWeapon: 5
   recoilY:
     serializedVersion: 2
     m_Curve:

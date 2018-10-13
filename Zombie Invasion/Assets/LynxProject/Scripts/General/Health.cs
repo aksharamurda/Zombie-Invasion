@@ -6,6 +6,7 @@ public class Health : MonoBehaviour {
 
     public int healthAmount = 100;
 
+    /*
     public void OnHit(int damage)
     {
         if (healthAmount <= 0)
@@ -13,4 +14,5 @@ public class Health : MonoBehaviour {
 
         healthAmount -= damage;
     }
+    */
 }
