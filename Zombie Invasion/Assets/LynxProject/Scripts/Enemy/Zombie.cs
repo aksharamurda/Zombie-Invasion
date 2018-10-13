@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class Zombie : Enemy {
 
-    List<HitArea> hitAreas = new List<HitArea>();
-
     void Start()
     {
         foreach (HitArea hit in GetComponentsInChildren(typeof(HitArea)))
         {
-            hit.onHitArea += OnHitArea;
-            hitAreas.Add(hit);
+            hit.enemy = this;
         }
     }
 

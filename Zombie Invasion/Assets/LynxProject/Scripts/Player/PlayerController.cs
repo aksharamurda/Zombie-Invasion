@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+
     [HideInInspector]
     public ResourcesManager resourcesManager;
     [HideInInspector]
@@ -176,9 +177,16 @@ public class PlayerController : MonoBehaviour {
 
         bool isHit = false;
 
-        Debug.DrawRay(origin, targetDirection);
-        RaycastHit hit = Ballistics.RaycastShoot(origin, targetDirection, ref isHit, ignoreLayer);
+        //Debug.DrawLine(origin, targetPosition, Color.green);
+        //RaycastHit hit = Ballistics.RaycastShoot(origin, targetDirection, ref isHit, ignoreLayer);
 
+        RaycastHit hit;
+        //if (Physics.Raycast(origin, targetDirection, out hit, 200, ignoreLayer))
+        if (Physics.Raycast(origin, targetDirection, out hit, 100, ignoreLayer))
+        {
+            isHit = true;
+            Debug.Log(hit.transform.name);
+        }
 
 
         if (isHit)
@@ -309,6 +317,7 @@ public class PlayerController : MonoBehaviour {
             }
 
         }
+
     }
 
     void HandleAnimationAll()

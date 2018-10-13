@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour {
     [HideInInspector]
     public Animator animator;
 
-    public float speedMove = 1;
+    public float speedMove = 0.25f;
     public float stopDistance = 1.5f;
 
     private NavMeshAgent navAgent;
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour {
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
             navAgent.isStopped = true;
-            //animator.Play(currentAttack);
+            animator.SetTrigger("OnAttack");
         }
     }
 
@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour {
             navAgent.isStopped = true;
             animator.SetTrigger("isDead");
             health.healthAmount = 0;
+            Destroy(gameObject, 3f);
         }
         else
         {
@@ -80,15 +81,4 @@ public class Enemy : MonoBehaviour {
 
     }
 
-    IEnumerator hitReaction()
-    {
-        navAgent.isStopped = true;
-        
-        //animator.Play(hitAnimations[Random.Range(0, hitAnimations.Count)]);
-        yield return new WaitForSeconds(1);
-        navAgent.isStopped = true;
-        //animator.Play(currentWalk);
-
-
-    }
 }

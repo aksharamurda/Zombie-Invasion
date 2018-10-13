@@ -10,7 +10,7 @@ public class PlayerCamera : MonoBehaviour {
     public Transform pivot;
     [HideInInspector]
     public Transform mTranform;
-    [HideInInspector]
+    //[HideInInspector]
     public Transform rayCamera;
     public bool leftPivot;
     float delta;
