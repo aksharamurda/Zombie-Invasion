@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour {
 
-    public int healthAmount = 100;
+    public float healthAmount = 100;
 
-    /*
-    public void OnHit(int damage)
+    public void OnHitTaken(float damage)
     {
         if (healthAmount <= 0)
             return;
 
         healthAmount -= damage;
     }
-    */
 }

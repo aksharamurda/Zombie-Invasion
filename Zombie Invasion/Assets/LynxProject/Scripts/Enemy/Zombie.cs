@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class Zombie : Enemy {
 
-    public override void OnHit()
+    List<HitArea> hitAreas = new List<HitArea>();
+
+    void Start()
     {
-        base.OnHit();
+        foreach (HitArea hit in GetComponentsInChildren(typeof(HitArea)))
+        {
+            hit.onHitArea += OnHitArea;
+            hit.healthAmount = health.healthAmount;
+            hitAreas.Add(hit);
+        }
+    }
+
+    public override void OnHitArea(float damage)
+    {
+        base.OnHitArea(damage);
     }
 }

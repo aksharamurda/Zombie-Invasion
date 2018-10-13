@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37676606, g: 0.3858393, b: 0.36624518, a: 1}
+  m_IndirectSpecularColor: {r: 0.37676674, g: 0.38583955, b: 0.36624536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -321,6 +321,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.4485548, y: 0.24868989, z: 0.27279797}
   m_Center: {x: 0, y: 0.124344945, z: -0.00890705}
+--- !u!114 &114884575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 114884570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 20
+  healthAmount: 0
+  isVital: 0
 --- !u!1 &126309278
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +835,20 @@ CapsuleCollider:
   m_Height: 0.49693435
   m_Direction: 1
   m_Center: {x: 0, y: 0.24846718, z: 0}
+--- !u!114 &277979847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277979842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!1 &280060622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100098, guid: 615c61e32987df944987a1062c3edeb3,
@@ -837,6 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4ee0fa36b18264da143f339ad18b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
   isDead: 0
 --- !u!114 &280060624
 MonoBehaviour:
@@ -1529,6 +1558,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 615c61e32987df944987a1062c3edeb3,
     type: 3}
   m_PrefabInternal: {fileID: 774669675}
+--- !u!114 &752910798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 752910797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 20
+  healthAmount: 0
+  isVital: 0
 --- !u!54 &752910799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1691,6 +1734,20 @@ CapsuleCollider:
   m_Height: 0.44767076
   m_Direction: 1
   m_Center: {x: 0, y: 0.22383538, z: 0}
+--- !u!114 &783654567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 783654562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!1 &799717343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1968,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100050, guid: 615c61e32987df944987a1062c3edeb3,
     type: 3}
   m_PrefabInternal: {fileID: 774669675}
+--- !u!114 &995767798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 995767797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!54 &995767799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2059,6 +2130,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: 615c61e32987df944987a1062c3edeb3,
     type: 3}
   m_PrefabInternal: {fileID: 774669675}
+--- !u!114 &1104109321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1104109320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!54 &1104109322
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2215,10 +2300,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1145257456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f6d3e67d3f9804d8b6d49feb84a83b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentDamage: 100
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 1
 --- !u!1 &1217151716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,18 +2395,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100082, guid: 615c61e32987df944987a1062c3edeb3,
     type: 3}
   m_PrefabInternal: {fileID: 774669675}
---- !u!114 &1224211821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1224211820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f6d3e67d3f9804d8b6d49feb84a83b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  percentDamage: 5
 --- !u!144 &1224211822
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2392,6 +2467,20 @@ CapsuleCollider:
   m_Height: 0.45095524
   m_Direction: 1
   m_Center: {x: 0, y: 0.22547762, z: 0}
+--- !u!114 &1224211825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1224211820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!1 &1285824909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,6 +2671,20 @@ CapsuleCollider:
   m_Height: 0.50059247
   m_Direction: 1
   m_Center: {x: 0, y: 0.25029624, z: 0}
+--- !u!114 &1288175354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1288175349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!1 &1360379148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,6 +2881,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100090, guid: 615c61e32987df944987a1062c3edeb3,
     type: 3}
   m_PrefabInternal: {fileID: 774669675}
+--- !u!114 &1499333753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1499333752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!54 &1499333754
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3667,6 +3784,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100046, guid: 615c61e32987df944987a1062c3edeb3,
     type: 3}
   m_PrefabInternal: {fileID: 774669675}
+--- !u!114 &1940131060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940131059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5e6c2bafc51de4daa132fc25455c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 10
+  healthAmount: 0
+  isVital: 0
 --- !u!54 &1940131061
 Rigidbody:
   m_ObjectHideFlags: 0
