@@ -171,21 +171,21 @@ public class PlayerController : MonoBehaviour {
         Vector3 origin = playerCamera.rayCamera.position;
         origin += playerCamera.rayCamera.forward * 0.5f;
 
-        for (int i = 0; i < c.weapon.bulletAmount; i++)
+        Vector3 targetPosition = inputVariables.aimPosition;
+        Vector3 targetDirection = targetPosition - origin;
+
+        bool isHit = false;
+
+        Debug.DrawRay(origin, targetDirection);
+        RaycastHit hit = Ballistics.RaycastShoot(origin, targetDirection, ref isHit, ignoreLayer);
+
+
+
+        if (isHit)
         {
-            Vector3 targetPosition = inputVariables.aimPosition;
-            Vector3 targetDirection = targetPosition - origin;
-
-            bool isHit = false;
-
-            RaycastHit hit =  Ballistics.RaycastShoot(origin, targetDirection, ref isHit, ignoreLayer);
-
-            if (isHit)
-            {
-                HandleBulletHit(hit, c);
-            }
-
+            HandleBulletHit(hit, c);
         }
+
     }
 
     void HandleBulletHit(RaycastHit hit, RuntimeWeapon rw)

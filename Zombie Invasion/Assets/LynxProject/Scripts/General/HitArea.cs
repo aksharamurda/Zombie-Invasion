@@ -8,15 +8,13 @@ public class HitArea : MonoBehaviour {
     public event OnHitArea onHitArea;
 
     public float damagePercent = 5;
-    [HideInInspector]
-    public float healthAmount;
     public bool isVital;
 
     public void OnHit(float damageFromWeapon)
     {
         if (isVital)
         {
-            onHitArea(healthAmount);
+            onHitArea(10000);
         }
         else
         {

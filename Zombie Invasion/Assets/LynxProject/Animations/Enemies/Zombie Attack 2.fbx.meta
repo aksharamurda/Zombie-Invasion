@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 679f60dc97a17964d9fc168031cfa83b
+guid: 3608a4a888063bb4594203f68093d960
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -103,7 +103,7 @@ ModelImporter:
     400094: mixamorig:Spine1
     400096: mixamorig:Spine2
     400098: //RootNode
-    7400000: Zombie Idle
+    7400000: ZombieAttack2
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -134,10 +134,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Zombie Idle
+      name: ZombieAttack2
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 183
+      lastFrame: 79
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -149,7 +149,7 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0

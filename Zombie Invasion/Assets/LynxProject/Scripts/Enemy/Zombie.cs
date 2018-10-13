@@ -11,7 +11,6 @@ public class Zombie : Enemy {
         foreach (HitArea hit in GetComponentsInChildren(typeof(HitArea)))
         {
             hit.onHitArea += OnHitArea;
-            hit.healthAmount = health.healthAmount;
             hitAreas.Add(hit);
         }
     }

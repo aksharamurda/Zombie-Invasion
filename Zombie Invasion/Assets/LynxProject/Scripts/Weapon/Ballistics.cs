@@ -8,9 +8,10 @@ public static class Ballistics{
         Ray ray = new Ray(origin, direction);
         RaycastHit hit;
 
-        if(Physics.Raycast(origin, direction, out hit, 100, layerMask))
+        if(Physics.Raycast(origin, direction, out hit, 200, layerMask))
         {
             success = true;
+            return hit;
         }
 
         return hit;

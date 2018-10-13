@@ -21,6 +21,7 @@ public class WeaponHook : MonoBehaviour {
     public void Shoot()
     {
 
+
         newFx = Instantiate(shootFx, aimPosition.position, aimPosition.rotation);
         particles = newFx.GetComponentsInChildren<ParticleSystem>();
 

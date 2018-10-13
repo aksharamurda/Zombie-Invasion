@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 428540}
   - component: {fileID: 19856704}
   - component: {fileID: 19949966}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GunShot_Sparks_FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 488920}
   - component: {fileID: 19885060}
   - component: {fileID: 19970182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GunShot_Smoke_FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
