@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICrosshair : UIElement {
+public class UICrosshair : MonoBehaviour {
 
     public GameObject uiCrosshair;
 
@@ -35,9 +35,9 @@ public class UICrosshair : UIElement {
         reloadTime = rt;
     }
 
-    public override void Tick(float d)
+    public void Update()
     {
-        t = d * spreadSpeed;
+        t = Time.deltaTime * spreadSpeed;
 
         if (uiCrosshair.activeInHierarchy)
         {

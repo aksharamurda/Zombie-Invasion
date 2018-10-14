@@ -73,7 +73,7 @@ public class PlayerInput : MonoBehaviour {
 
         delta = Time.deltaTime;
 
-        if (!UIManager.instance.useMobileConsole)
+        if (!UIPlayer.instance.useMobileConsole)
         {
             GetInput_Update();  
             InGame_UpdateStates_Update();

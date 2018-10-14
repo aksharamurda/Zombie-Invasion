@@ -128,7 +128,7 @@ public class PlayerCamera : MonoBehaviour {
     void HandleRotation()
     {
 
-        if (UIManager.instance.useMobileConsole)
+        if (UIPlayer.instance.useMobileConsole)
         {
             JoystickController mobileJoystick = GameObject.FindObjectOfType(typeof(JoystickController)) as JoystickController;
             mouseX = mobileJoystick.Horizontal;

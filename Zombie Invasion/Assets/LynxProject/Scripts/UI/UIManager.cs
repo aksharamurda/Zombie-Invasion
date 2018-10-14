@@ -5,11 +5,6 @@ using UnityEngine;
 public class UIManager : MonoBehaviour {
 
     public static UIManager instance;
-
-    public bool useMobileConsole;
-
-    public List<UIElement> uiElements = new List<UIElement>();
-
     void Awake()
     {
         instance = this;
@@ -17,10 +12,6 @@ public class UIManager : MonoBehaviour {
 
     void Update()
     {
-        float delta = Time.deltaTime;
-        for (int i = 0; i < uiElements.Count; i++)
-        {
-            uiElements[i].Tick(delta);
-        }
+
     }
 }

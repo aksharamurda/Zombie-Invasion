@@ -24,7 +24,7 @@ public class UIFx : MonoBehaviour
     {
         splatBlood.enabled = true;
         startTime = Time.time;
-        Debug.Log("Enemy Damage Taken");
+        Debug.Log("Player : Damage taken from Enemy.");
     }
 
     void Update()

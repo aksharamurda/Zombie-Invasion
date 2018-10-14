@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIWeapon : UIElement {
+public class UIWeapon : MonoBehaviour {
     public Image iconWeapon;
     public Text textAmmo;
 
@@ -14,7 +14,7 @@ public class UIWeapon : UIElement {
         playerController = GameObject.FindObjectOfType(typeof(PlayerController)) as PlayerController;
     }
 
-    public override void Tick(float d)
+    public void Update()
     {
         RuntimeWeapon rw = playerController.playerWeapon.GetCurrent();
         iconWeapon.sprite = rw.weapon.icon;

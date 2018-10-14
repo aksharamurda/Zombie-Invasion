@@ -14,11 +14,13 @@ public class Enemy : MonoBehaviour {
 
     public float speedMove = 0.25f;
     public float stopDistance = 1.5f;
+    public float damage = 10;
 
     private NavMeshAgent navAgent;
     private Transform player;
 
     public bool isDead;
+    public bool isHit;
     public float attackRate = 1;
     private float nextAttackTime;
 
@@ -68,27 +70,12 @@ public class Enemy : MonoBehaviour {
             }
 
         }
-    }
-
-    public void AttackAction()
-    {
-        Debug.Log("Attack Player");
-        player.SendMessage("OnHitTaken", 10, SendMessageOptions.DontRequireReceiver);
-    }
-
-    public virtual void OnHitArea(float damage)
-    {
-        if (isDead)
-            return;
-
-        health.OnHitTaken(damage);
 
         if (health.healthAmount <= 0)
         {
             isDead = true;
             navAgent.isStopped = true;
             navAgent.speed = 0;
-            //animator.SetTrigger("OnHit");
             animator.SetBool("isDead", isDead);
 
             animator.SetTrigger("OnDeath");
@@ -98,14 +85,36 @@ public class Enemy : MonoBehaviour {
             health.healthAmount = 0;
             Destroy(gameObject, 3.5f);
         }
-        else
-        {
-            StartCoroutine(OnHitStop());
-            animator.SetTrigger("OnHit");
-            currentHitType = Random.Range(0, hitAnimSize);
-            animator.SetFloat("HitType", currentHitType);
-        }
+    }
 
+    public void AttackAction()
+    {
+        Debug.Log("Enemy : Attack Player!");
+        player.SendMessage("OnHitTaken", damage, SendMessageOptions.DontRequireReceiver);
+    }
+
+    public virtual void OnHitArea(float damage)
+    {
+        if (isDead)
+            return;
+
+        health.OnHitTaken(damage);
+
+        StartCoroutine(OnHitStop());
+
+        if (!isHit)
+            StartCoroutine(OnWaitToHitFx());
+
+    }
+
+    IEnumerator OnWaitToHitFx()
+    {
+        isHit = true;
+        animator.SetTrigger("OnHit");
+        currentHitType = Random.Range(0, hitAnimSize);
+        animator.SetFloat("HitType", currentHitType);
+        yield return new WaitForSeconds(1f);
+        isHit = false;
     }
 
     IEnumerator OnHitStop()

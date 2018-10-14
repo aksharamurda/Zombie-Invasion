@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour {
     bool switchingWeapon;
     float interactTime;
 
+    private Health healthPlayer;
+    public bool isDead;
+
     public void InitPlayerController()
     {
         resourcesManager = Resources.Load("Resources") as ResourcesManager;
@@ -91,6 +94,8 @@ public class PlayerController : MonoBehaviour {
         animatorHook.InitAnimatorHook(this);
 
         InitWeapon();
+
+        healthPlayer = GetComponent<Health>();
     }
 
     void InitWeapon()
@@ -208,9 +213,13 @@ public class PlayerController : MonoBehaviour {
 
     public void OnHitTaken(float damage)
     {
+        if (isDead)
+            return;
+
         UIFx.instance.OnHitTaken();
         StartCoroutine(LayerWeightFx());
         playerCamera.Shake(0.3f, 0.1f);
+
     }
 
     IEnumerator LayerWeightFx()
@@ -341,6 +350,11 @@ public class PlayerController : MonoBehaviour {
 
         }
 
+        UIPlayer.instance.OnHitTaken(healthPlayer.healthAmount);
+        if (healthPlayer.healthAmount <= 0)
+        {
+            isDead = true;
+        }
     }
 
     void HandleAnimationAll()
