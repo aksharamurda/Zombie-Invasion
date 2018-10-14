@@ -1345,7 +1345,7 @@ MonoBehaviour:
   stopDistance: 1.5
   isDead: 0
   attackRate: 2.5
-  deathAnimSize: 4
+  deathAnimSize: 1
   hitAnimSize: 2
   attackAnimSize: 2
   walkAnimSize: 2
@@ -1388,7 +1388,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 280060622}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 8.44}
+  m_LocalPosition: {x: 0, y: 0, z: 1.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 752910801}
@@ -5404,7 +5404,7 @@ MonoBehaviour:
   stopDistance: 1.5
   isDead: 0
   attackRate: 2.5
-  deathAnimSize: 4
+  deathAnimSize: 1
   hitAnimSize: 2
   attackAnimSize: 2
   walkAnimSize: 2

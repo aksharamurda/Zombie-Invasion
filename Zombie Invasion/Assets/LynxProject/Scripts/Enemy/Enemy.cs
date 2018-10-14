@@ -88,9 +88,10 @@ public class Enemy : MonoBehaviour {
             isDead = true;
             navAgent.isStopped = true;
             navAgent.speed = 0;
-            animator.SetTrigger("OnHit");
+            //animator.SetTrigger("OnHit");
             animator.SetBool("isDead", isDead);
 
+            animator.SetTrigger("OnDeath");
             currentDeathType = Random.Range(0, deathAnimSize);
             animator.SetFloat("DeathType", currentDeathType);
 
