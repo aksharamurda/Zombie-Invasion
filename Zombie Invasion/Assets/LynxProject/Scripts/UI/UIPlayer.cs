@@ -20,9 +20,9 @@ public class UIPlayer : MonoBehaviour {
 
     }
 
-    public void OnHitTaken(float curHealth)
+    public void OnHitTaken(float curHealth, float health)
     {
-        float h = curHealth / 100;
+        float h = curHealth / health;
         playerHealthUI.fillAmount = h;
     }
 }

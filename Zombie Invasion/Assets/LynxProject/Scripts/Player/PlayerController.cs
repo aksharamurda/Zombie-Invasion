@@ -68,10 +68,12 @@ public class PlayerController : MonoBehaviour {
     float interactTime;
 
     private Health healthPlayer;
+    private float startHealth;
     public bool isDead;
 
     public void InitPlayerController()
     {
+
         resourcesManager = Resources.Load("Resources") as ResourcesManager;
 
         resourcesManager.InitResourcesManager();
@@ -96,6 +98,7 @@ public class PlayerController : MonoBehaviour {
         InitWeapon();
 
         healthPlayer = GetComponent<Health>();
+        startHealth = healthPlayer.healthAmount;
     }
 
     void InitWeapon()
@@ -166,6 +169,10 @@ public class PlayerController : MonoBehaviour {
                 animatorHook.RecoilAnim();
                 HandleShooting(c);
             }
+        }
+        else
+        {
+            Reload();
         }
 
         return retVal;
@@ -245,6 +252,8 @@ public class PlayerController : MonoBehaviour {
 
         if (c.curAmmo < c.weapon.magazineAmmo)
         {
+            playerWeapon.GetCurrent().m_instance.SendMessage("OnReloadStart", 0, SendMessageOptions.DontRequireReceiver);
+
             if (c.weapon.magazineAmmo <= c.curCarryingAmmo)
             {
                 c.curAmmo = c.weapon.magazineAmmo;
@@ -350,7 +359,7 @@ public class PlayerController : MonoBehaviour {
 
         }
 
-        UIPlayer.instance.OnHitTaken(healthPlayer.healthAmount);
+        UIPlayer.instance.OnHitTaken(healthPlayer.healthAmount, startHealth);
         if (healthPlayer.healthAmount <= 0)
         {
             isDead = true;

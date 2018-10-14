@@ -116,7 +116,7 @@ public class PlayerInput : MonoBehaviour {
         if (isReloading)
         {
             shootInput = false;
-            playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnReloadStart", 0, SendMessageOptions.DontRequireReceiver);
+            //playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnReloadStart", 0, SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -128,7 +128,7 @@ public class PlayerInput : MonoBehaviour {
             if (isReloading)
             {
                 shootInput = false;
-                playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnReloadStart", 0, SendMessageOptions.DontRequireReceiver);
+                //playerController.playerWeapon.GetCurrent().m_instance.SendMessage("OnReloadStart", 0, SendMessageOptions.DontRequireReceiver);
             }
         }
 
