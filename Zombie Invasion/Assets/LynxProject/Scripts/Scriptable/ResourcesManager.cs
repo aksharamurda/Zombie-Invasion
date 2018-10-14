@@ -8,6 +8,8 @@ public class ResourcesManager : ScriptableObject {
     public Weapon[] allWeapons;
     Dictionary<string, int> weaponDictionaries = new Dictionary<string, int>();
 
+    public GameObject prefabBloodFx;
+
     public void InitResourcesManager()
     {
         InitWeapon();

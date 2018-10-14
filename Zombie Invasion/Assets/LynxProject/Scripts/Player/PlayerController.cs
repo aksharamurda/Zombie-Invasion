@@ -213,7 +213,12 @@ public class PlayerController : MonoBehaviour {
     void HandleBulletHit(RaycastHit hit, RuntimeWeapon rw)
     {
         //if Hit enemy ?
-        hit.transform.SendMessage("OnHit", rw.weapon.damageWeapon, SendMessageOptions.DontRequireReceiver);
+        if(hit.transform.gameObject.layer == 10)
+        {
+            hit.transform.SendMessage("OnHit", rw.weapon.damageWeapon, SendMessageOptions.DontRequireReceiver);
+            Instantiate(resourcesManager.prefabBloodFx, hit.point, Quaternion.identity);
+        }
+
         //else ?
 
     }

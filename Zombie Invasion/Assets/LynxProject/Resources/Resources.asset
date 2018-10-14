@@ -14,3 +14,4 @@ MonoBehaviour:
   allWeapons:
   - {fileID: 11400000, guid: b93f629db49f052419a27655a54edb1f, type: 2}
   - {fileID: 11400000, guid: 909a3e0c70cc50848ae1cd9d1557e3c7, type: 2}
+  prefabBloodFx: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 2}
