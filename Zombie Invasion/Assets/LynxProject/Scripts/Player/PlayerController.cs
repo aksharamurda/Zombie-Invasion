@@ -216,7 +216,8 @@ public class PlayerController : MonoBehaviour {
         if(hit.transform.gameObject.layer == 10)
         {
             hit.transform.SendMessage("OnHit", rw.weapon.damageWeapon, SendMessageOptions.DontRequireReceiver);
-            Instantiate(resourcesManager.prefabBloodFx, hit.point, Quaternion.identity);
+            GameObject blood = Instantiate(resourcesManager.prefabBloodFx, hit.point, Quaternion.identity);
+            Destroy(blood, 1f);
         }
 
         //else ?
