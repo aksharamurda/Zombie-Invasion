@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour {
     {
         UIFx.instance.OnHitTaken();
         StartCoroutine(LayerWeightFx());
+        playerCamera.Shake(0.3f, 0.1f);
     }
 
     IEnumerator LayerWeightFx()

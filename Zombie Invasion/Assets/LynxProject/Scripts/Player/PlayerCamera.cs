@@ -90,6 +90,14 @@ public class PlayerCamera : MonoBehaviour {
         shake_decay = 0.002f;
     }
 
+    public void Shake(float shake_inten, float shake_dec)
+    {
+        originPosition = transform.position;
+        originRotation = transform.rotation;
+        shake_intensity = shake_inten;
+        shake_decay = shake_dec;
+    }
+
     void HandlePositions()
     {
         float targetX = values.normalX;

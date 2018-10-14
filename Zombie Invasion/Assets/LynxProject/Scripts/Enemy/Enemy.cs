@@ -22,6 +22,16 @@ public class Enemy : MonoBehaviour {
     public float attackRate = 1;
     private float nextAttackTime;
 
+    public int deathAnimSize = 4;
+    public int hitAnimSize = 2;
+    public int attackAnimSize = 2;
+    public int walkAnimSize = 2;
+
+    private int currentDeathType;
+    private int currentHitType;
+    private int currentAttackType;
+    private int currentWalkType;
+
     void Awake()
     {
         health = GetComponent<Health>();
@@ -33,6 +43,9 @@ public class Enemy : MonoBehaviour {
         navAgent.stoppingDistance = stopDistance;
         navAgent.SetDestination(player.position);
 
+        currentAttackType = Random.Range(0, attackAnimSize);
+        currentWalkType = Random.Range(0, walkAnimSize);
+        animator.SetFloat("WalkType", currentWalkType);
     }
 
     public void Update()
@@ -51,7 +64,7 @@ public class Enemy : MonoBehaviour {
             {
                 nextAttackTime = Time.time + attackRate;
                 animator.SetTrigger("OnAttack");
-                
+                animator.SetFloat("AttackType", currentAttackType);
             }
 
         }
@@ -77,6 +90,10 @@ public class Enemy : MonoBehaviour {
             navAgent.speed = 0;
             animator.SetTrigger("OnHit");
             animator.SetBool("isDead", isDead);
+
+            currentDeathType = Random.Range(0, deathAnimSize);
+            animator.SetFloat("DeathType", currentDeathType);
+
             health.healthAmount = 0;
             Destroy(gameObject, 3.5f);
         }
@@ -84,6 +101,8 @@ public class Enemy : MonoBehaviour {
         {
             StartCoroutine(OnHitStop());
             animator.SetTrigger("OnHit");
+            currentHitType = Random.Range(0, hitAnimSize);
+            animator.SetFloat("HitType", currentHitType);
         }
 
     }
