@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour {
             {
                 nextAttackTime = Time.time + attackRate;
                 animator.SetTrigger("OnAttack");
-                
             }
 
         }
@@ -63,12 +62,11 @@ public class Enemy : MonoBehaviour {
 
         health.OnHitTaken(damage);
         
-
         if (health.healthAmount <= 0)
         {
             isDead = true;
             navAgent.isStopped = true;
-            animator.SetTrigger("isDead");
+            animator.SetBool("isDead", isDead);
             health.healthAmount = 0;
             Destroy(gameObject, 3f);
         }
