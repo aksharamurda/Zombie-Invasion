@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(Health))]
 public class PlayerController : MonoBehaviour {
 
 
@@ -67,7 +69,6 @@ public class PlayerController : MonoBehaviour {
 
     public void InitPlayerController()
     {
-
         resourcesManager = Resources.Load("Resources") as ResourcesManager;
 
         resourcesManager.InitResourcesManager();
@@ -177,17 +178,18 @@ public class PlayerController : MonoBehaviour {
 
         bool isHit = false;
 
-        //Debug.DrawLine(origin, targetPosition, Color.green);
-        //RaycastHit hit = Ballistics.RaycastShoot(origin, targetDirection, ref isHit, ignoreLayer);
+        Debug.DrawRay(origin, targetPosition);
+        RaycastHit hit = Ballistics.RaycastShoot(origin, targetDirection, ref isHit, ignoreLayer);
 
-        RaycastHit hit;
+        //RaycastHit hit;
         //if (Physics.Raycast(origin, targetDirection, out hit, 200, ignoreLayer))
+        /*
         if (Physics.Raycast(origin, targetDirection, out hit, 100, ignoreLayer))
         {
             isHit = true;
-            Debug.Log(hit.transform.name);
         }
-
+        */
+        
 
         if (isHit)
         {
@@ -202,9 +204,29 @@ public class PlayerController : MonoBehaviour {
         hit.transform.SendMessage("OnHit", rw.weapon.damageWeapon, SendMessageOptions.DontRequireReceiver);
         //else ?
 
-        //Debug.Log("Send Message to " + hit.transform.name + ", that he was shot.");
     }
 
+    public void OnHitTaken(float damage)
+    {
+        UIFx.instance.OnHitTaken();
+        StartCoroutine(LayerWeightFx());
+    }
+
+    IEnumerator LayerWeightFx()
+    {
+        float speed = 2;
+        float startTime = Time.time;
+        animator.SetLayerWeight(4, 1);
+        
+        while (animator.GetLayerWeight(4) > 0)
+        {
+            float time = (Time.time - startTime) * speed;
+            float weight = Mathf.Lerp(1, 0, time);
+            animator.SetLayerWeight(4, weight);
+            yield return null;
+        }
+
+    }
 
     public bool Reload()
     {

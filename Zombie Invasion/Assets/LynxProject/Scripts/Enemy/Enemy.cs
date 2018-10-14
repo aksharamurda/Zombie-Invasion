@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour {
 
     public void Update()
     {
+
         if (isDead)
             return;
 
@@ -50,9 +51,16 @@ public class Enemy : MonoBehaviour {
             {
                 nextAttackTime = Time.time + attackRate;
                 animator.SetTrigger("OnAttack");
+                
             }
 
         }
+    }
+
+    public void AttackAction()
+    {
+        Debug.Log("Attack Player");
+        player.SendMessage("OnHitTaken", 10, SendMessageOptions.DontRequireReceiver);
     }
 
     public virtual void OnHitArea(float damage)
@@ -61,20 +69,30 @@ public class Enemy : MonoBehaviour {
             return;
 
         health.OnHitTaken(damage);
-        
+
         if (health.healthAmount <= 0)
         {
             isDead = true;
             navAgent.isStopped = true;
+            navAgent.speed = 0;
+            animator.SetTrigger("OnHit");
             animator.SetBool("isDead", isDead);
             health.healthAmount = 0;
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 3.5f);
         }
         else
         {
+            StartCoroutine(OnHitStop());
             animator.SetTrigger("OnHit");
         }
 
+    }
+
+    IEnumerator OnHitStop()
+    {
+        navAgent.isStopped = true;
+        yield return new WaitForSeconds(1f);
+        navAgent.isStopped = false;
     }
 
 }
