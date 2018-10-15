@@ -9,10 +9,16 @@ public class UIPlayer : MonoBehaviour {
     public bool useMobileConsole;
 
     public Image playerHealthUI;
+    public GameObject consoleUIPanel;
 
     void Awake()
     {
         instance = this;
+
+        if (!useMobileConsole)
+        {
+            consoleUIPanel.SetActive(false);
+        }
     }
 
     void Update()

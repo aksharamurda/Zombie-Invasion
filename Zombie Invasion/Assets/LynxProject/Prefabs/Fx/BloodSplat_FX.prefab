@@ -1187,8 +1187,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.41610527, g: 0.49056602, b: 0, a: 1}
-        key1: {r: 0.6835692, g: 1, b: 0.24056602, a: 1}
+        key0: {r: 0.26666668, g: 0.18823531, b: 0.18039216, a: 1}
+        key1: {r: 0.40000004, g: 0.14901961, b: 0.15686275, a: 1}
         key2: {r: 1, g: 0, b: 0, a: 1}
         key3: {r: 1, g: 0, b: 0, a: 0}
         key4: {r: 1, g: 0, b: 0, a: 0}
@@ -1364,7 +1364,7 @@ ParticleSystem:
     sprites:
     - sprite: {fileID: 0}
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 3
