@@ -19,6 +19,10 @@ public class CameraValues : ScriptableObject
     public float aimZ = -0.5f;
     public float aimX = 0;
 
+    public float camXDeath = -0.2f;
+    public float camYDeath = -0.53f;
+    public float camZDeath = -2.72f;
+
     public float crouchY;
     public float adaptSpeed = 9;
 }

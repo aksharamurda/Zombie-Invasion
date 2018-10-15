@@ -369,6 +369,12 @@ public class PlayerController : MonoBehaviour {
         if (healthPlayer.healthAmount <= 0)
         {
             isDead = true;
+            Destroy(animatorHook);
+            animator.SetLayerWeight(1, 0);
+            animator.SetLayerWeight(2, 0);
+            animator.SetLayerWeight(3, 0);
+            Time.timeScale = 0.5f;
+            animator.Play("death2");
         }
     }
 

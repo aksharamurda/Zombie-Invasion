@@ -55,7 +55,6 @@ public class PlayerInput : MonoBehaviour {
 
         InGame_UpdateStates_FixedUpdate();
         playerController.FixedTick(delta);
-
         playerCamera.FixedTick(delta);
 
     }
@@ -86,6 +85,9 @@ public class PlayerInput : MonoBehaviour {
 
     void GetInput_Update()
     {
+        if (playerController.isDead)
+            return;
+
         shootInput = Input.GetMouseButton(0);
         reloadInput = Input.GetButtonDown(StaticStrings.inputReload);
         switchInput = Input.GetButtonDown(StaticStrings.inputSwitch);

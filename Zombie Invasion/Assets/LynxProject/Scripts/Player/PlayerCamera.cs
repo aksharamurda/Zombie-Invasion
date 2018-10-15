@@ -56,7 +56,9 @@ public class PlayerCamera : MonoBehaviour {
             return;
 
         HandlePositions();
-        HandleRotation();
+
+        if(!playerController.isDead)
+            HandleRotation();
 
         float speed = values.aimSpeed;
         if (playerController.controllerStates.isAiming)
@@ -104,14 +106,19 @@ public class PlayerCamera : MonoBehaviour {
         float targetZ = values.normalZ;
         float targetY = values.normalY;
 
+
         if (playerController.controllerStates.isAiming)
         {
             targetX = values.aimX;
             targetZ = values.aimZ;
         }
 
+        
+
         if (leftPivot)
             targetX = -targetX;
+
+
 
         Vector3 newPivotPosition = pivot.localPosition;
         newPivotPosition.x = targetX;
@@ -119,6 +126,12 @@ public class PlayerCamera : MonoBehaviour {
 
         Vector3 newCamPositon = camTrans.localPosition;
         newCamPositon.z = targetZ;
+        if (playerController.isDead)
+        {
+            newCamPositon.x = values.camXDeath;
+            newCamPositon.y = values.camYDeath;
+            newCamPositon.z = values.camZDeath;
+        }
 
         float t = delta * values.adaptSpeed;
         pivot.localPosition = Vector3.Lerp(pivot.localPosition, newPivotPosition, t);
