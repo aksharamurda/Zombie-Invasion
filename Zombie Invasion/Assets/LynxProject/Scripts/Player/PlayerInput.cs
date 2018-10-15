@@ -86,7 +86,13 @@ public class PlayerInput : MonoBehaviour {
     void GetInput_Update()
     {
         if (playerController.isDead)
+        {
+            shootInput = false;
+            reloadInput = false;
+            switchInput = false;
             return;
+        }
+        
 
         shootInput = Input.GetMouseButton(0);
         reloadInput = Input.GetButtonDown(StaticStrings.inputReload);

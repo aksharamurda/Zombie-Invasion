@@ -167,9 +167,9 @@ public class PlayerCamera : MonoBehaviour {
         lookAngle += smoothX * values.y_rotate_speed;
         Quaternion targetRot = Quaternion.Euler(0, lookAngle, 0);
         mTranform.rotation = targetRot;
-
         tiltAngle -= smoothY * values.x_rotate_speed;
         tiltAngle = Mathf.Clamp(tiltAngle, values.minAngle, values.maxAngle);
+
         pivot.localRotation = Quaternion.Euler(tiltAngle, 0, 0);
     }
 
